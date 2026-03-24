@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mer & Lu — 26.09.26</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --crema: #f5f0e8;
+    --crema-sec: #ede8df;
+    --verde: #3a6b35;
+    --verde-claro: #6a9e64;
+    --verde-icono: #5a8a54;
+    --texto: #555050;
+    --texto-sec: #6b6560;
+    --borde: #c8d8c0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--crema);
+    color: var(--texto);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 32px 80px;
+    position: relative;
+    background: var(--crema);
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .hero-top {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--verde-claro);
+    margin-bottom: 36px;
+  }
+
+  .hero-names-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    line-height: 0.9;
+    margin-bottom: 40px;
+  }
+  .n-mer, .n-lu {
+    display: block;
+    font-size: clamp(5.5rem, 22vw, 10rem);
+    color: var(--verde);
+  }
+  .n-mer { font-style: italic; }
+  .n-amp {
+    display: block;
+    font-style: italic;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    color: var(--verde-claro);
+    margin: 8px 0;
+  }
+  .n-lu { color: var(--texto); }
+
+  .hero-fecha {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    font-weight: 300;
+    color: var(--texto-sec);
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+  }
+
+  .hero-lugar {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--verde-claro);
+  }
+
+  /* ── SECCIONES ── */
+  .sec {
+    padding: 72px 32px;
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: center;
+    border-bottom: 1px solid var(--borde);
+  }
+  .sec:last-of-type { border-bottom: none; }
+
+  .sec-icon {
+    margin: 0 auto 20px;
+    display: block;
+    color: var(--verde-icono);
+  }
+
+  .sec-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--verde-claro);
+    margin-bottom: 10px;
+  }
+
+  .sec-h {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 8vw, 2.8rem);
+    font-weight: 300;
+    color: var(--texto);
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+
+  .sec-p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--texto-sec);
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* ── COUNTDOWN ── */
+  .countdown-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--verde-claro);
+    margin-bottom: 8px;
+  }
+
+  .countdown-fecha {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 7vw, 2.6rem);
+    font-weight: 300;
+    color: var(--texto);
+    margin-bottom: 32px;
+  }
+
+  .countdown-grid {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+
+  .cd-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+  }
+
+  .cd-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 9vw, 3.2rem);
+    font-weight: 300;
+    color: var(--verde);
+    line-height: 1;
+  }
+
+  .cd-sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: var(--verde-claro);
+    line-height: 1;
+    padding-bottom: 20px;
+    align-self: center;
+  }
+
+  .cd-label {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--texto-sec);
+    margin-top: 6px;
+  }
+
+  /* ── EVENTO ── */
+  .evento-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin: 24px 0 20px;
+  }
+
+  .evento-col {
+    padding: 0 28px;
+    text-align: center;
+  }
+
+  .evento-col:first-child {
+    border-right: 1px solid var(--borde);
+  }
+
+  .evento-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--texto);
+    line-height: 1;
+  }
+
+  .evento-sub {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--texto-sec);
+    margin-top: 4px;
+  }
+
+  .divider { width: 100%; height: 1px; background: var(--borde); margin: 20px 0; }
+
+  .lugar-nombre {
+    font-weight: 500;
+    color: var(--texto);
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  .lugar-dir {
+    font-size: 0.9rem;
+    color: var(--texto-sec);
+    line-height: 1.7;
+  }
+
+  /* ── BOTONES ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s ease;
+    margin-top: 20px;
+  }
+
+  .btn-ghost {
+    background: var(--crema-sec);
+    color: var(--texto);
+    border: 1px solid var(--borde);
+  }
+  .btn-ghost:hover { background: var(--borde); }
+
+  .btn-verde {
+    background: var(--verde-icono);
+    color: #fff;
+  }
+  .btn-verde:hover { background: var(--verde); }
+
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+  /* ── DRESS CODE ── */
+  .dress-palabra {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--texto);
+    display: block;
+    margin: 6px 0 12px;
+  }
+
+  .dress-nota {
+    font-size: 0.88rem;
+    color: var(--verde);
+    font-style: italic;
+  }
+
+  /* ── REGALOS ── */
+  .account-box {
+    background: var(--crema-sec);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-top: 24px;
+    text-align: left;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .acc-title {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--verde-claro);
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .acc-row {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 2.1;
+    color: var(--texto-sec);
+  }
+  .acc-row strong {
+    font-weight: 500;
+    color: var(--texto);
+  }
+
+  /* ── INVITACION HEADER ── */
+  .invitacion-header {
+    background: var(--crema-sec);
+    border-bottom: 1px solid var(--borde);
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .inv-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--verde-claro);
+    margin-bottom: 6px;
+  }
+  .inv-h {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--texto);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--crema-sec);
+    border-top: 1px solid var(--borde);
+    padding: 48px 32px;
+    text-align: center;
+  }
+  .footer-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--verde);
+    margin-bottom: 8px;
+  }
+  .footer-sub {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--texto-sec);
+  }
+
+  #modal { display: none; }
+  #modal.open { display: flex; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-top">NOS CASAMOS!</p>
+  <div class="hero-names-big">
+    <span class="n-mer">Mer</span>
+    <span class="n-amp">&</span>
+    <span class="n-lu">Lu</span>
+  </div>
+</div>
+
+<!-- COUNTDOWN + AGENDAR -->
+<div class="sec">
+  <!-- ícono calendario -->
+  <svg class="sec-icon" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+    <rect x="3" y="4" width="18" height="18" rx="2"/>
+    <line x1="16" y1="2" x2="16" y2="6"/>
+    <line x1="8" y1="2" x2="8" y2="6"/>
+    <line x1="3" y1="10" x2="21" y2="10"/>
+    <path d="M8 14 Q10 16 12 14 Q14 12 16 14" stroke-width="1"/>
+  </svg>
+
+  <p class="countdown-label">AGENDÁ LA FECHA</p>
+  <p class="countdown-fecha">26 de septiembre</p>
+
+  <div class="countdown-grid">
+    <div class="cd-item">
+      <span class="cd-num" id="cd-dias">—</span>
+      <span class="cd-label">DÍAS</span>
+    </div>
+    <span class="cd-sep">:</span>
+    <div class="cd-item">
+      <span class="cd-num" id="cd-hs">—</span>
+      <span class="cd-label">HS</span>
+    </div>
+    <span class="cd-sep">:</span>
+    <div class="cd-item">
+      <span class="cd-num" id="cd-min">—</span>
+      <span class="cd-label">MIN</span>
+    </div>
+    <span class="cd-sep">:</span>
+    <div class="cd-item">
+      <span class="cd-num" id="cd-seg">—</span>
+      <span class="cd-label">SEG</span>
+    </div>
+  </div>
+
+  <a class="btn btn-ghost" id="calBtn" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="3" y="4" width="18" height="18" rx="2"/>
+      <line x1="16" y1="2" x2="16" y2="6"/>
+      <line x1="8" y1="2" x2="8" y2="6"/>
+      <line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+    AGENDAR FECHA
+  </a>
+</div>
+
+<!-- CEREMONIA Y FESTEJO -->
+<div class="sec">
+  <!-- ícono hojas -->
+  <svg class="sec-icon" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+    <path d="M12 22 C12 22 4 16 4 9 C4 5.7 7.1 3 12 3 C16.9 3 20 5.7 20 9 C20 16 12 22 12 22Z"/>
+    <line x1="12" y1="3" x2="12" y2="22"/>
+    <path d="M12 8 Q15 11 19 10"/>
+    <path d="M12 13 Q9 11 5 12"/>
+  </svg>
+
+  <p class="sec-label">EL EVENTO</p>
+  <h2 class="sec-h">Civil y Festejo</h2>
+
+  <div class="evento-row">
+    <div class="evento-col">
+      <div class="evento-num">26</div>
+      <div class="evento-sub">SEPTIEMBRE</div>
+    </div>
+    <div class="evento-col">
+      <div class="evento-num">19:30</div>
+      <div class="evento-sub">HORAS</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p class="lugar-nombre">Invernadero Bar</p>
+  <p class="lugar-dir">Agüero 2502, Buenos Aires</p>
+
+  <a class="btn btn-ghost" href="https://maps.google.com/?q=Invernadero+Bar+Aguero+2502+Buenos+Aires" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+      <circle cx="12" cy="9" r="2.5"/>
+    </svg>
+    CÓMO LLEGAR
+  </a>
+</div>
+
+<!-- DRESS CODE -->
+<div class="sec">
+  <!-- ícono zapatos outline -->
+  <svg class="sec-icon" width="52" height="44" viewBox="0 0 52 44" fill="none" stroke="currentColor" stroke-width="1.2">
+    <path d="M4 32 Q8 20 18 18 Q26 16 34 22 L44 26 Q46 27 46 30 L46 34 Q46 36 44 36 L6 36 Q4 36 4 34 Z"/>
+    <path d="M18 18 Q20 14 24 13"/>
+    <path d="M34 22 Q36 18 38 17 Q40 16 42 17"/>
+  </svg>
+
+  <p class="sec-label">VESTIMENTA</p>
+  <h2 class="sec-h">Dress Code</h2>
+  <span class="dress-palabra">Formal · Elegante</span>
+</div>
+
+<!-- REGALOS -->
+<div class="sec">
+  <!-- ícono regalo -->
+  <svg class="sec-icon" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+    <rect x="3" y="9" width="18" height="13" rx="1"/>
+    <path d="M3 9 L3 7 Q3 6 4 6 L20 6 Q21 6 21 7 L21 9"/>
+    <line x1="12" y1="6" x2="12" y2="22"/>
+    <path d="M12 6 Q10 2 7 3 Q5 4 7 6 Q9 7 12 6"/>
+    <path d="M12 6 Q14 2 17 3 Q19 4 17 6 Q15 7 12 6"/>
+  </svg>
+
+  <p class="sec-label">REGALOS</p>
+  <p class="sec-p">
+    Estar ahí con nosotros es más que suficiente.<br>
+    Pero si querés sumarte a nuestra luna de miel,<br>con mucho amor lo recibimos. ♡
+  </p>
+
+  <button class="btn btn-ghost" onclick="document.getElementById('modal').classList.add('open')" style="margin-top:24px;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="15" height="15"><rect x="2" y="5" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg>
+    VER DATOS BANCARIOS
+  </button>
+</div>
+
+<!-- MODAL DATOS BANCARIOS -->
+<div id="modal" onclick="if(event.target===this)this.classList.remove('open')" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(50,45,38,0.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px;">
+  <div style="background:var(--crema);border:1px solid var(--borde);border-radius:16px;padding:40px 32px;max-width:360px;width:100%;text-align:center;position:relative;">
+    <button onclick="document.getElementById('modal').classList.remove('open')" style="position:absolute;top:14px;right:16px;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--texto-sec);line-height:1;">✕</button>
+    <svg style="color:var(--verde-icono);margin-bottom:16px;" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="5" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg>
+    <p style="font-size:0.62rem;font-weight:500;letter-spacing:0.38em;text-transform:uppercase;color:var(--verde-claro);margin-bottom:16px;">Datos bancarios</p>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--texto);margin-bottom:20px;line-height:1.5;">Para ayudarnos con<br>la luna de miel ♡</p>
+    <div style="background:var(--crema-sec);border:1px solid var(--borde);border-radius:10px;padding:20px;text-align:left;font-size:0.9rem;line-height:2.2;color:var(--texto-sec);">
+      <strong style="color:var(--texto);font-weight:500;">Banco</strong> · BBVA<br>
+      <strong style="color:var(--texto);font-weight:500;">Titular</strong> · Mercedes<br>
+      <strong style="color:var(--texto);font-weight:500;">CBU</strong> · 000000000000000<br>
+      <strong style="color:var(--texto);font-weight:500;">Alias</strong> · luymer
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRMAR ASISTENCIA -->
+<div class="sec">
+  <!-- ícono sobre -->
+  <svg class="sec-icon" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+    <rect x="2" y="5" width="20" height="14" rx="2"/>
+    <polyline points="2,5 12,13 22,5"/>
+  </svg>
+
+  <p class="sec-label">INVITACIÓN</p>
+  <h2 class="sec-h">Confirmá tu asistencia</h2>
+
+  <a class="btn btn-verde" href="https://docs.google.com/forms/d/e/1FAIpQLSd07aGP97WVIvDseErMBUQltJlLuhXMRTdBR_uzZLQKyKRBug/viewform?usp=publish-editor" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="2" y="5" width="20" height="14" rx="2"/>
+      <polyline points="2,5 12,13 22,5"/>
+    </svg>
+    CONFIRMAR ASISTENCIA
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-names">Mer & Lu</div>
+  <p class="footer-sub">¡Los esperamos! · 26 · 09 · 2026</p>
+</footer>
+
+<script>
+  // ── Google Calendar ──
+  const calUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+    + '&text=' + encodeURIComponent('Casamiento Mer & Lu 🌿')
+    + '&dates=20260926T193000/20260927T040000'
+    + '&location=' + encodeURIComponent('Invernadero Bar, Agüero 2502, Buenos Aires')
+    + '&details=' + encodeURIComponent('¡Los esperamos para celebrar juntos! 🌿💚');
+  document.getElementById('calBtn').href = calUrl;
+
+  // ── Countdown ──
+  function updateCountdown() {
+    const target = new Date('2026-09-26T19:30:00-03:00');
+    const now = new Date();
+    const diff = target - now;
+
+    if (diff <= 0) {
+      document.getElementById('cd-dias').textContent = '0';
+      document.getElementById('cd-hs').textContent = '0';
+      document.getElementById('cd-min').textContent = '0';
+      document.getElementById('cd-seg').textContent = '0';
+      return;
+    }
+
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hs   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const min  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seg  = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('cd-dias').textContent = dias;
+    document.getElementById('cd-hs').textContent   = String(hs).padStart(2,'0');
+    document.getElementById('cd-min').textContent  = String(min).padStart(2,'0');
+    document.getElementById('cd-seg').textContent  = String(seg).padStart(2,'0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
